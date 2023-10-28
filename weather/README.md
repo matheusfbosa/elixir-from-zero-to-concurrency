@@ -1,7 +1,6 @@
 # Weather App
 
-## Introduction
-This project is an Elixir application designed to retrieve weather information for a specified location using the OpenWeatherMap API. It provides functions to interact with the API, convert temperature units, and handle response data.
+An Elixir application designed to retrieve weather information for a specified location using the [OpenWeatherMap API](https://openweathermap.org/api). It provides functions to interact with the API, convert temperature units, and handle response data.
 
 ## Getting Started
 To get started with the "weather" project, follow these steps:
@@ -22,20 +21,17 @@ To get started with the "weather" project, follow these steps:
    iex -S mix
    ```
 
-6. Now, you can use the `Weather` module to access weather information for different locations by running the following examples in the interactive Elixir shell:
-
+6. Now, you can use the `Weather` module to access weather information for different locations by running the following example in the interactive Elixir shell:
    ```elixir
-   iex(1)> Weather.temperature_of("Curitiba")
-   "Curitiba: 19.4 ºC"
-
-   iex(2)> Weather.temperature_of("Rio de Janeiro")
-   "Rio de Janeiro: 23.9 ºC"
-
-   iex(3)> Weather.temperature_of("São Paulo")
-   "São Paulo: 25.0 ºC"
-
-   iex(4)> Weather.temperature_of("XPTO")
-   "XPTO not found"
+   iex(1)> ["Curitiba", "Guarapuava", "Foz do Iguaçu", "Rio de Janeiro", "São Paulo"] |> Weather.start()
+   [
+      {#PID<0.206.0>, "Curitiba"},
+      {#PID<0.206.0>, "Guarapuava"},
+      {#PID<0.206.0>, "Foz do Iguaçu"},
+      {#PID<0.206.0>, "Rio de Janeiro"},
+      {#PID<0.206.0>, "São Paulo"}
+   ]
+   Curitiba: 19.3 ºC, Foz do Iguaçu: 20.4 ºC, Guarapuava: 18.2 ºC, Rio de Janeiro: 27.0 ºC, São Paulo: 25.1 ºC
    ```
 
 ## Dependencies
