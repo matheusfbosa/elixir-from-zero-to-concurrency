@@ -1,43 +1,8 @@
 defmodule Weather do
   def start(cities) do
-    manager_pid = spawn(__MODULE__, :manager, [[], Enum.count(cities)])
-
     cities
-    |> Enum.map(fn city ->
-      pid = spawn(__MODULE__, :get_temperature, [])
-      send(pid, {manager_pid, city})
-    end)
-  end
-
-  def get_temperature() do
-    receive do
-      {manager_pid, location} ->
-        send(manager_pid, {:ok, temperature_of(location)})
-
-      _ ->
-        IO.puts("Error")
-    end
-
-    get_temperature()
-  end
-
-  def manager(cities \\ [], total) do
-    receive do
-      {:ok, temp} ->
-        results = [temp | cities]
-
-        if(Enum.count(results) == total) do
-          send(self(), :exit)
-        end
-
-        manager(results, total)
-
-      :exit ->
-        IO.puts(cities |> Enum.sort() |> Enum.join(", "))
-
-      _ ->
-        manager(cities, total)
-    end
+    |> Enum.map(&create_task/1)
+    |> Enum.map(&Task.await/1)
   end
 
   def get_appid(), do: "your_appid"
@@ -56,6 +21,10 @@ defmodule Weather do
       {:ok, temp} -> "#{location}: #{temp} ºC"
       :error -> "#{location} not found"
     end
+  end
+
+  defp create_task(city) do
+    Task.async(fn -> temperature_of(city) end)
   end
 
   defp parser_response({:ok, %HTTPoison.Response{body: body, status_code: 200}}) do

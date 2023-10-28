@@ -23,15 +23,8 @@ To get started with the "weather" project, follow these steps:
 
 6. Now, you can use the `Weather` module to access weather information for different locations by running the following example in the interactive Elixir shell:
    ```elixir
-   iex(1)> ["Curitiba", "Guarapuava", "Foz do Iguaçu", "Rio de Janeiro", "São Paulo"] |> Weather.start()
-   [
-      {#PID<0.206.0>, "Curitiba"},
-      {#PID<0.206.0>, "Guarapuava"},
-      {#PID<0.206.0>, "Foz do Iguaçu"},
-      {#PID<0.206.0>, "Rio de Janeiro"},
-      {#PID<0.206.0>, "São Paulo"}
-   ]
-   Curitiba: 19.3 ºC, Foz do Iguaçu: 20.4 ºC, Guarapuava: 18.2 ºC, Rio de Janeiro: 27.0 ºC, São Paulo: 25.1 ºC
+   iex(1)> ["Curitiba", "Guarapuava", "Foz do Iguaçu", "Rio de Janeiro", "São Paulo", "XPTO"] |> Weather.start()
+   ["Curitiba: 19.3 ºC", "Guarapuava: 18.2 ºC", "Foz do Iguaçu: 20.4 ºC", "Rio de Janeiro: 27.0 ºC", "São Paulo: 25.0 ºC", "XPTO not found"]
    ```
 
 ## Dependencies
